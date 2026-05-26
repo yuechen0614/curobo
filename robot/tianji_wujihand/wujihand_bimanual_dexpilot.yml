@@ -1,0 +1,90 @@
+retargeting:
+  left:
+    optimizer:
+      type: "AdaptiveOptimizerAnalytical"
+      hand_side: "left"
+
+    retarget:
+      # Huber loss thresholds
+      huber_delta: 2.0
+      huber_delta_dir: 0.5
+
+      # Loss weights
+      w_pos: 1.0
+      w_dir: 10.0
+      w_full_hand: 1.0
+
+      # Regularization
+      norm_delta: 0.04
+
+      # Scaling
+      scaling: 1.0
+
+      # Per-finger segment scaling [PIP, DIP, TIP]
+      segment_scaling:
+        thumb: [1.0, 1.0, 1.0]
+        index: [1.0, 1.03, 1.05]
+        middle: [1.0, 1.0, 1.0]
+        ring: [1.0, 1.0, 1.0]
+        pinky: [1.05, 1.15, 1.15]
+
+      # Pinch thresholds (cm)
+      pinch_thresholds:
+        index: { d1: 2.0, d2: 4.0 }
+        middle: { d1: 2.0, d2: 4.0 }
+        ring: { d1: 2.0, d2: 4.0 }
+        pinky: { d1: 2.0, d2: 4.0 }
+
+      # MediaPipe rotation (degrees)
+      mediapipe_rotation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+
+      # Low-pass filter (0~1, smaller=smoother)
+      lp_alpha: 0.4
+
+  right:
+    optimizer:
+      type: "AdaptiveOptimizerAnalytical"
+      hand_side: "right"
+
+    retarget:
+      # Huber loss thresholds
+      huber_delta: 2.0
+      huber_delta_dir: 0.5
+
+      # Loss weights
+      w_pos: 1.0
+      w_dir: 10.0
+      w_full_hand: 1.0
+
+      # Regularization
+      norm_delta: 0.04
+
+      # Scaling
+      scaling: 1.0
+
+      # Per-finger segment scaling [PIP, DIP, TIP]
+      segment_scaling:
+        thumb: [1.0, 1.0, 1.0]
+        index: [1.0, 1.03, 1.05]
+        middle: [1.0, 1.0, 1.0]
+        ring: [1.0, 1.0, 1.0]
+        pinky: [1.05, 1.15, 1.15]
+
+      # Pinch thresholds (cm)
+      pinch_thresholds:
+        index: { d1: 2.0, d2: 4.0 }
+        middle: { d1: 2.0, d2: 4.0 }
+        ring: { d1: 2.0, d2: 4.0 }
+        pinky: { d1: 2.0, d2: 4.0 }
+
+      # MediaPipe rotation (degrees)
+      mediapipe_rotation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+
+      # Low-pass filter (0~1, smaller=smoother)
+      lp_alpha: 0.4

@@ -1,0 +1,67 @@
+<robot name="base">
+<!-- ===== World & Workspace frame ===== -->
+    <link name="world" />
+    <joint name="world_to_base0" type="fixed">
+        <parent link="world" />
+        <child link="base0" />
+        <origin xyz="-0.3 0.705 -0.41" rpy="1.57 0 0" />
+    </joint>
+    <link name="base0">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+            <mesh filename="./meshes/base0.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="1.0" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+        </inertial>
+    </link>
+    <joint name="base0_to_base1" type="fixed">
+        <parent link="base0" />
+        <child link="base1" />
+        <origin xyz="0.3 1.07 0.7" rpy="1.57 0 0" />
+    </joint>
+    <link name="base1">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.0" />
+            <geometry>
+            <mesh filename="./meshes/base1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="1.0" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+        </inertial>
+    </link>
+    <joint name="base1_to_stand" type="fixed">
+        <parent link="base1" />
+        <child link="robot_stand" />
+        <origin xyz="0 0 -0.2" rpy="0 3.14 0" />
+    </joint>
+    <link name="robot_stand">
+        <inertial>
+            <origin xyz="9.4209E-05 -4.4091E-05 0.069418" rpy="0 0 0" />
+            <mass value="3.3739" />
+            <inertia ixx="0.01037" ixy="7.6022E-07" ixz="-1.0073E-06" iyy="0.01248" iyz="6.2315E-06" izz="0.0089543" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="./meshes/robot_stand.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="./meshes/robot_stand.STL" />
+            </geometry>
+        </collision>
+    </link>
+</robot>

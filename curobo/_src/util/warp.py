@@ -21,6 +21,12 @@ from curobo._src.types.device_cfg import DeviceCfg
 from curobo._src.util.logging import log_debug, log_info
 
 
+import inspect as _inspect
+
+# wp.func/wp.kernel gained the `module=` keyword in Warp 1.12; fall back for older builds.
+_WP_FUNC_HAS_MODULE = "module" in _inspect.signature(wp.func).parameters
+
+
 def _set_warp_name(func: Callable[..., Any], name: str) -> Callable[..., Any]:
     func.__name__ = name
     func.__qualname__ = name
@@ -31,7 +37,9 @@ def warp_func(name: str) -> Callable[[Callable[..., Any]], Any]:
     """Return a decorator that names a template before ``wp.func`` sees it."""
 
     def _decorate(func: Callable[..., Any]) -> Any:
-        return wp.func(module="unique")(_set_warp_name(func, name))
+        if _WP_FUNC_HAS_MODULE:
+            return wp.func(module="unique")(_set_warp_name(func, name))
+        return wp.func(_set_warp_name(func, name))
 
     return _decorate
 
@@ -40,7 +48,9 @@ def warp_kernel(name: str, **kwargs: Any) -> Callable[[Callable[..., Any]], Any]
     """Return a decorator that names a template before ``wp.kernel`` sees it."""
 
     def _decorate(func: Callable[..., Any]) -> Any:
-        return wp.kernel(module="unique", **kwargs)(_set_warp_name(func, name))
+        if _WP_FUNC_HAS_MODULE:
+            return wp.kernel(module="unique", **kwargs)(_set_warp_name(func, name))
+        return wp.kernel(**kwargs)(_set_warp_name(func, name))
 
     return _decorate
 

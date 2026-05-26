@@ -1,0 +1,27 @@
+urdf_path: "./urdf/tianji_wujihand_right.urdf"
+mesh_dir: "./urdf"
+ee_joints: "Joint7_R"
+arm_joints_name: [
+  'Joint1_R',
+  'Joint2_R',
+  'Joint3_R',
+  'Joint4_R',
+  'Joint5_R',
+  'Joint6_R',
+  'Joint7_R'
+  ]
+gripper_joints_name: [
+  'right_finger1_joint1', 'right_finger1_joint2', 'right_finger1_joint3', 'right_finger1_joint4',
+  'right_finger2_joint1', 'right_finger2_joint2', 'right_finger2_joint3', 'right_finger2_joint4',
+  'right_finger3_joint1', 'right_finger3_joint2', 'right_finger3_joint3', 'right_finger3_joint4',
+  'right_finger4_joint1', 'right_finger4_joint2', 'right_finger4_joint3', 'right_finger4_joint4',
+  'right_finger5_joint1', 'right_finger5_joint2', 'right_finger5_joint3', 'right_finger5_joint4'
+  ]
+ee_link: "Link7_R"
+ee_type: "hand"
+base_link: "Base_R"
+ik_solver_type: "pink"
+robot_pose:
+  pos: [0, 0, 0.0]
+  rot: [1, 0, 0, 0]
+dual_arm: False

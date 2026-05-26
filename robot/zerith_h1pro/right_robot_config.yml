@@ -1,0 +1,32 @@
+urdf_path: "./h1pro.urdf"
+mesh_dir: "/home/kaslensu/workspace/Luminis/Assets/Robots/zerith_h1pro"
+ee_joints: "right_wrist_pitch_joint"
+ee_link: "right_wrist_pitch_link"
+ee_type: "gripper"
+base_link: "dipan_link"
+arm_joints_name:
+  [
+    "right_shoulder_pitch_joint",
+    "right_shoulder_roll_joint",
+    "right_shoulder_yaw_joint",
+    "right_elbow_joint",
+    "right_wrist_roll_joint",
+    "right_wrist_yaw_joint",
+    "right_wrist_pitch_joint",
+  ]
+gripper_joints_name: ["right_jaw_left_finger_joint", "right_jaw_right_finger_joint"]
+save_gripper_joints_name:
+  ["right_jaw_left_finger_joint", "right_jaw_right_finger_joint"]
+gripper_move:
+  base: "right_jaw_left_finger_joint"
+  mimic: [["right_jaw_right_finger_joint", -1.0, 0.0]]
+  sign: 1
+gripper_bias: 0.102
+gripper_scale: [-0.04, 0.0]
+dual_arm: True
+rotate_lim: [0.0, 1.0]
+wrist_camera_link: "right_jaw_camera_link"
+wrist_camera_type: "D405"
+wrist_camera:
+  position: [0.0, 0.0, 0.0]
+  orientation: [0, 0, 0]

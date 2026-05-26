@@ -1,0 +1,35 @@
+urdf_path: "./urdf/tianji_wujihand_left.urdf"
+mesh_dir: "./urdf"
+ee_joints: "Joint7_L"
+arm_joints_name: [
+  'Joint1_L',
+  'Joint2_L',
+  'Joint3_L',
+  'Joint4_L',
+  'Joint5_L',
+  'Joint6_L',
+  'Joint7_L'
+  ]
+gripper_joints_name: [
+  'left_finger1_joint1', 'left_finger1_joint2', 'left_finger1_joint3', 'left_finger1_joint4',
+  'left_finger2_joint1', 'left_finger2_joint2', 'left_finger2_joint3', 'left_finger2_joint4',
+  'left_finger3_joint1', 'left_finger3_joint2', 'left_finger3_joint3', 'left_finger3_joint4',
+  'left_finger4_joint1', 'left_finger4_joint2', 'left_finger4_joint3', 'left_finger4_joint4',
+  'left_finger5_joint1', 'left_finger5_joint2', 'left_finger5_joint3', 'left_finger5_joint4'
+  ]
+ee_link: "Link7_L"
+ee_type: "hand"
+base_link: "Base_L"
+ik_solver_type: "pink"
+robot_pose:
+  pos: [0, 0, 0.0]
+  rot: [1, 0, 0, 0]
+dual_arm: False
+camera: 
+  -
+    link: "robot_stand"
+    name: "cam_head"
+    type: Gemini_345Lg
+    mesh: d435
+    pos: [-0.04579, -0.02632, 0.13625]
+    ori: [-10, -90, -10]
