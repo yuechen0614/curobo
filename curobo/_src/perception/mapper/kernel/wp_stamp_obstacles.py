@@ -63,6 +63,8 @@ if TYPE_CHECKING:
 # - By keeping variables named "is_obs_enabled" and "compute_local_sdf" in
 #   scope, subsequent wp.func calls detect the existing Function and add
 #   overloads.
+# - wp.func must be called directly at module level (not via a helper function)
+#   so that Warp's internal frame-depth lookup resolves to this module's scope.
 
 is_obs_enabled = None
 load_obstacle_transform = None
@@ -74,9 +76,17 @@ for _module_path in OBSTACLE_SDF_MODULES:
     _transform_fn = getattr(_data_module, "load_obstacle_transform")
     _sdf_fn = getattr(_data_module, "compute_local_sdf")
 
-    is_obs_enabled = wp.func(_obs_fn, module=__name__)
-    load_obstacle_transform = wp.func(_transform_fn, module=__name__)
-    compute_local_sdf = wp.func(_sdf_fn, module=__name__)
+    # Call wp.func directly at module level so Warp's frame-depth assumption
+    # (scope_locals = f_back.f_back.f_locals) resolves to this module's scope,
+    # enabling overload accumulation across loop iterations.
+    try:
+        is_obs_enabled = wp.func(_obs_fn, module=__name__)
+        load_obstacle_transform = wp.func(_transform_fn, module=__name__)
+        compute_local_sdf = wp.func(_sdf_fn, module=__name__)
+    except TypeError:
+        is_obs_enabled = wp.func(_obs_fn)
+        load_obstacle_transform = wp.func(_transform_fn)
+        compute_local_sdf = wp.func(_sdf_fn)
 
 del _module_path, _data_module, _obs_fn, _transform_fn, _sdf_fn
 
